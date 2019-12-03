@@ -17,26 +17,34 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Đăng nhập</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="post" action="/login">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Địa chỉ Email...">
+                                            <input type="text" name="username" class="form-control form-control-user"
+                                                id="exampleInputUsername" aria-describedby="emailHelp"
+                                                placeholder="Username..." required>
+                                            {{#if usernameWarning}}
+                                                <div style="margin-left: 20px" class="text-danger">
+                                                    <span>{{usernameWarning}}</span>
+                                                </div>
+                                            {{/if}}
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Mật khẩu">
+                                            <input type="password" name="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" placeholder="Mật khẩu" required>
+                                            {{#if passwordWarning}}
+                                                    <div style="margin-left: 20px" class="text-danger">
+                                                        <span>{{passwordWarning}}</span>
+                                                    </div>
+                                            {{/if}}
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <input type="checkbox" name="rememberMe" class="custom-control-input" id="customCheck">
                                                 <label class="custom-control-label" for="customCheck">Nhớ tài
                                                     khoản</label>
                                             </div>
                                         </div>
-                                        <a href="/home" class="btn btn-primary btn-user btn-block">
-                                            Đăng nhập
-                                        </a>
+                                        <input value="Đăng nhập" type="submit" class="btn btn-primary btn-user btn-block"/>
                                         <hr>
                                         <div class="row">
                                             <div class="col-lg-6">

@@ -1,23 +1,27 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('static-favicon');
-var dotenv = require('dotenv');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var hbs = require('express-handlebars');
-var mongoose = require('mongoose');
+const express = require('express');
+const path = require('path');
+const favicon = require('static-favicon');
+const dotenv = require('dotenv');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const hbs = require('express-handlebars');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const expressSession = require('express-session');
+const flash = require('connect-flash');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var homePage = require('./routes/homePage');
-var managementPage = require('./routes/management');
+const login = require('./routes/login');
+const signup = require('./routes/signup');
+const routes = require('./routes/index');
+const users = require('./routes/users');
+const homePage = require('./routes/homePage');
+const managementPage = require('./routes/management');
+const initPasspostMiddleware = require('./middlewares/passportMiddleware');
 
-var app = express();
+const app = express();
 dotenv.config();
 
-const dbUrl =
-  'mongodb+srv://hddhoangducdat:83400319a@black-hole-wz8hs.mongodb.net/BlackHoleShop?retryWrites=true&w=majority';
+const dbUrl = 'mongodb+srv://hddhoangducdat:83400319a@black-hole-wz8hs.mongodb.net/BlackHoleShop?retryWrites=true&w=majority';
 
 // view engine setup
 app.engine(
@@ -25,7 +29,7 @@ app.engine(
   hbs({
     extname: 'hbs',
     defaultLayout: 'layout',
-    layoutsDir: __dirname + '/views/'
+    layoutsDir: __dirname + '/views'
   })
 );
 app.set('views', path.join(__dirname, 'views'));
@@ -33,10 +37,19 @@ app.set('view engine', 'hbs');
 
 app.use(favicon());
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-app.use(cookieParser());
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(cookieParser('keyboard cat'));
+app.use(expressSession({ cookie: { maxAge: 60000 }})); //60000ms ~ 60s
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(flash());
+
+
+// Configuring Passport
+app.use(expressSession({secret: process.env.SECRET_KEY}));
+app.use(passport.initialize());
+app.use(passport.session());
+initPasspostMiddleware(passport);
 
 const db = mongoose.connect(
   dbUrl,
@@ -46,10 +59,16 @@ const db = mongoose.connect(
   }
 );
 
-app.use('/', routes);
+app.use('/', login(passport));
+app.use('/login', login(passport));
+app.use('/signup', signup(passport));
 app.use('/user', users);
 app.use('/home', homePage);
 app.use('/management', managementPage);
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/home');
+});
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {

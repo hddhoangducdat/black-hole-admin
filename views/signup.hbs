@@ -12,31 +12,59 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Tạo tài khoản!</h1>
                             </div>
-                            <form class="user">
+                            <form class="user" method="post" action="/signup">
                                 <div class="form-group row">
-
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Họ và tên">
+                                        <input type="text" name="firstName" class="form-control form-control-user" id="txtFirstName"
+                                            placeholder="Họ và tên đệm" required>
                                     </div>
+                                    {{#if usernameWarning}}
+                                        <div style="margin-left: 20px" class="text-danger">
+                                            <span>{{usernameWarning}}</span>
+                                        </div>
+                                    {{/if}}
+                                </div>
+                                 <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <input type="text" name="lastName" class="form-control form-control-user" id="exampleLastName"
+                                            placeholder="Tên" required>
+                                    </div>
+                                    {{#if usernameWarning}}
+                                        <div style="margin-left: 20px" class="text-danger">
+                                            <span>{{usernameWarning}}</span>
+                                        </div>
+                                    {{/if}}
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Địa chỉ Email">
+                                    <input type="text" name="username" class="form-control form-control-user" id="exampleInputUsername"
+                                        placeholder="Username" required>
+                                    {{#if usernameWarning}}
+                                        <div style="margin-left: 20px" class="text-danger">
+                                            <span>{{usernameWarning}}</span>
+                                        </div>
+                                    {{/if}}
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Mật khẩu">
+                                        <input type="password" name="password" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Mật khẩu" required>
+                                        {{#if passwordWarning}}
+                                            <div style="margin-left: 20px" class="text-danger">
+                                                <span>{{passwordWarning}}</span>
+                                            </div>
+                                        {{/if}}
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Kiểm tra mật khẩu">
+                                            id="exampleRepeatPassword" placeholder="Kiểm tra mật khẩu" required>
+                                        {{#if confirmPassWarning}}
+                                                <div style="margin-left: 20px" class="text-danger">
+                                                    <span>{{confirmPassWarning}}</span>
+                                                </div>
+                                        {{/if}}
                                     </div>
                                 </div>
-                                <a href="/" class="btn btn-primary btn-user btn-block">
-                                    Đăng ký tài khoản
-                                </a>
+                                <input type="submit" class="btn btn-primary btn-user btn-block" value="Đăng ký tài khoản" />
                                 <hr>
                                 <div class="row">
                                     <div class="col-lg-6">
