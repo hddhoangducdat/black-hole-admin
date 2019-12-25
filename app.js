@@ -67,7 +67,7 @@ app.use('/home', homePage);
 app.use('/management', managementPage);
 app.get('/logout', function(req, res){
   req.logout();
-  res.redirect('/home');
+  res.redirect('/');
 });
 
 /// catch 404 and forwarding to error handler
