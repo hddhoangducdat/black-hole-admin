@@ -65,7 +65,6 @@
             </li>
 
 
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -152,52 +151,74 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Người dùng</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Thông tin cá nhân</h1>
 
                     </div>
 
+                    <br />
                     <!-- Content Row -->
 
                     <!-- Content Row -->
-
-
                     <div class="ui container">
+                        <div class="ui grid">
 
-                        <div class="ui link cards">
-                            {{#each people}}
-                            <div class="card">
-                                <div class="image">
-                                    <img src={{this.image}}>
-                                </div>
-                                <div class="content">
-                                    <div class="header">{{this.name}}</div>
-                                    <div class="meta">
-                                        <a>{{this.phone}}</a>
-                                    </div>
-                                    <div class="description">
-                                        <p>Giới tính: {{this.sex}}</p>
-                                        <p>Địa chỉ: {{this.address}}</p>
-                                        <p>Email: {{this.email}}</p>
-                                    </div>
-                                </div>
-                                <div class="extra content">
-                                    <span class="right floated">
-                                        <div class="ui basic red button">Xóa người dùng</div>
-                                    </span>
-                                    <span>
-                                        <a href="/user/modify">
-                                            <div class="ui basic button green">Chỉnh sửa</div>
-                                        </a>
-                                    </span>
+                            <div class="four wide column">
+                                <img class="ui fluid image" src={{user.image}}>
+                            </div>
+                            <div class="twelve wide column">
+                                <div class="ui container">
 
+
+                                    <h3>Họ và tên: {{user.fullName}} </h3>
+
+                                    <h3>Email: {{user.email}}</h3>
+
+
+                                    <h3>User Name: {{user.username}}</h3>
                                 </div>
                             </div>
-                            {{/each}}
+
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Thay đổi thông tin cá nhân</h1>
+
+                    </div>
+
+                    <div class="ui container">
+                        <div class="ui form">
+
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>Họ và tên đệm</label>
+                                    <input type="text">
+                                </div>
+                                <div class="field">
+                                    <label>Tên người dùng</label>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Email</label>
+                                <input type="text">
+                            </div>
+                            <div class="field">
+                                <label>User Name</label>
+                                <input type="text">
+                            </div>
+
+                            <button class="ui button primary">Thay đổi</button>
 
                         </div>
 
 
+
+
                     </div>
+
+
 
                 </div>
 
@@ -237,19 +258,22 @@
             </div>
         </div>
     </div>
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="../../vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="../../js/demo/chart-area-demo.js"></script>
+    <script src="../../js/demo/chart-pie-demo.js"></script>
+
+
 </body>
