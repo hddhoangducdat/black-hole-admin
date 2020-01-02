@@ -7,10 +7,10 @@ const productSchema = new mongoose.Schema({
   description: String,
   producer: String,
   images: [],
-  price: String,
+  price: Number,
   promotionPrice: String,
   includedVAT: String,
-  quantity: String,
+  quantity: Number,
   categoryUrl: String,
   category: String,
   detail: String,
@@ -19,7 +19,8 @@ const productSchema = new mongoose.Schema({
   modifiedBy: String,
   modifiedDate: String,
   metaKeywords: String,
-  sellerId: String
+  sellerId: String,
+  sold: Number
 });
 
 module.exports = mongoose.model("product", productSchema, "product");

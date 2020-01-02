@@ -1,9 +1,8 @@
-var userModel = require("../models/userModel");
-var customerModel = require("../models/customerModel");
+var sellerModel = require("../models/sellerModel");
 var _ = require("lodash");
 
 exports.all_seller = async (req, res) => {
-  var brand = await userModel.find();
+  var brand = await sellerModel.find();
   _.remove(brand, br => br.type === "admin");
   brand.map(br => {
     return {

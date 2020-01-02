@@ -34,11 +34,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="/user">
                     <i class="user icon"></i>
-                    <span>Người dùng</span></a>
+                    <span>Khách hàng</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/management/brand">
-                    <i class="dolar icon"></i>
+                    <i class="fas fa-robot"></i>
                     <span>Người bán hàng</span></a>
             </li>
             {{else}}
@@ -170,19 +170,21 @@
                                     <img src={{this.image}}>
                                 </div>
                                 <div class="content">
-                                    <div class="header">{{this.name}}</div>
+                                    <div class="header">{{this.firstName}} {{this.lastName}}</div>
                                     <div class="meta">
-                                        <a>{{this.phone}}</a>
+                                        <a>{{this.username}}</a>
                                     </div>
                                     <div class="description">
-                                        <p>Giới tính: {{this.sex}}</p>
-                                        <p>Địa chỉ: {{this.address}}</p>
+                                        {{!-- <p>Giới tính: {{this.sex}}</p> --}}
+                                        {{!-- <p>Địa chỉ: {{this.address}}</p> --}}
                                         <p>Email: {{this.email}}</p>
                                     </div>
                                 </div>
                                 <div class="extra content">
                                     <span class="right floated">
-                                        <div class="ui basic red button">Xóa người dùng</div>
+                                        <div class="deleteuser ui basic red button" data-id={{this._id}}>
+                                            Xóa người dùng
+                                        </div>
                                     </span>
                                     <span>
                                         <a href="/user/modify">
@@ -252,4 +254,5 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="js/user.js"></script>
 </body>
