@@ -19,7 +19,6 @@ exports.seller_product = async (req, res) => {
     req.user.type === "admin"
       ? await productModel.find()
       : await productModel.find({ sellerId: req.user._id });
-
   res.render("productPage", {
     title: "Black Hole Admin",
     user: {
@@ -53,9 +52,51 @@ exports.change_product = async (req, res) => {
   product.category = req.body.product_categories;
   product.createdBy = req.body.product_createdBy;
   if (req.file) {
-    product.images = "http://localhost:3000/" + "uploads/" + req.file.filename;
+    product.images =
+      "https://black-hole-admin.herokuapp.com/" +
+      "uploads/" +
+      req.file.filename;
   }
 
   await product.save();
   res.redirect(`/management/product`);
+};
+
+exports.show_form_upload_product = async (req, res) => {
+  res.render("productUpload", {
+    title: "Black Hole Admin",
+    user: {
+      name: req.user.username,
+      image: req.user.image,
+      type: req.user.type === "admin" ? true : false
+    }
+  });
+};
+
+exports.upload_product = async (req, res) => {
+  var product = new productModel({
+    name: req.body.product_name,
+    price: req.body.product_price,
+    description: req.body.product_description,
+    quantity: req.body.product_quantity,
+    category: req.body.product_categories,
+    createdBy: req.user.username,
+    sellerId: req.user._id,
+    sold: 0,
+    images: req.file
+      ? "https://black-hole-admin.herokuapp.com/" +
+        "uploads/" +
+        req.file.filename
+      : ""
+  });
+  await product.save();
+  res.redirect("/management/product");
+};
+
+exports.add_carousel = async (req, res) => {
+  let product = await productModel.findById(req.body.id);
+  product.carousel = product.carousel === "red" ? "" : "red";
+
+  await product.save();
+  res.redirect("../product");
 };

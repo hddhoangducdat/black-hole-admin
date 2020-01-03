@@ -64,6 +64,11 @@
                     <span>Thông tin cá nhân</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/upload_product">
+                    <i class="fas fa-space-shuttle"></i>
+                    <span>Đăng sản phẩm</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/management/product">
                     <i class="fas fa-meteor"></i>
                     <span>Sản phẩm</span>
@@ -136,7 +141,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.name}}</span>
-                                <img class="img-profile rounded-circle" src={{user.image}}>
+                                <img class="img-profile rounded-circle" src="{{user.image}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -170,8 +175,7 @@
                         <form action="/management/product/modify/submit/{{product._id}}" method="POST" class="ui grid"
                             enctype="multipart/form-data">
                             <div class="four wide column">
-                                <img class="ui fluid image" src="../../../{{product.images}}"
-                                    alt="../../{{product.images}}">
+                                <img class="ui fluid image" src="{{product.images}}" alt="">
 
                             </div>
                             <div class="twelve wide column">
@@ -183,9 +187,27 @@
                                         </div>
                                         <div class=" two fields">
                                             <div class="field">
-                                                <label>Loại mặt hàng</label>
+                                                {{!-- <label>Loại mặt hàng</label>
                                                 <input name="product_categories" type="text"
-                                                    value="{{product.category}}">
+                                                    value="{{product.category}}"> --}}
+
+                                                <label for="validationCustom04">State</label>
+                                                <select name="product_categories" class="custom-select"
+                                                    id="validationCustom04">
+                                                    <option selected>{{product.category}}</option>
+                                                    <option value="electronic">Điện tử</option>
+                                                    <option value="lifestyle">Nhà cửa - đời sống</option>
+                                                    <option value="toolkit">Phụ kiện - thiết bị số
+                                                    </option>
+                                                    <option value="book">Sách</option>
+                                                    <option value="transport">Phương tiện</option>
+                                                    <option value="sport">Thể thao</option>
+                                                    <option value="food">Thực phẩm</option>
+                                                    <option value="fashion">Thời trang</option>
+
+
+                                                </select>
+
                                             </div>
                                             <div class="field">
                                                 <label>Giá sản phẩm</label>

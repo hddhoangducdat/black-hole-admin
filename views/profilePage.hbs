@@ -63,6 +63,11 @@
                     <span>Thông tin cá nhân</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/upload_product">
+                    <i class="fas fa-space-shuttle"></i>
+                    <span>Đăng sản phẩm</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/management/product">
                     <i class="fas fa-meteor"></i>
                     <span>Sản phẩm</span>
@@ -135,7 +140,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.name}}</span>
-                                <img class="img-profile rounded-circle" src={{user.image}}>
+                                <img class="img-profile rounded-circle" src="{{user.image}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -169,7 +174,7 @@
                         <div class="ui grid">
 
                             <div class="four wide column">
-                                <img class="ui fluid image" src={{user.image}}>
+                                <img class="ui fluid image" src="{{user.image}}">
                             </div>
                             <div class="twelve wide column">
                                 <div class="ui container">
@@ -213,9 +218,11 @@
                                 <input name="username" type="text" value="{{user.username}}">
                             </div>
 
+
                             <div class="custom-file">
-                                <input name="sellerImage" type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                <input name="sellerImage" type="file" class="custom-file-input" id="inputGroupFile01"
+                                    aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Thay ảnh đại diện</label>
                             </div>
                             <br /> <br />
                             <button class="ui button primary" type="submit">Thay đổi</button>
@@ -265,7 +272,7 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    {{!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -273,23 +280,30 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
-    <script src="../../vendor/jquery/jquery.min.js"></script>
-    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        crossorigin="anonymous"></script> --}}
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
 
     <!-- Custom scripts for all pages-->
-    <script src="../../js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="../../vendor/chart.js/Chart.min.js"></script>
+    <script src="../vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="../../js/demo/chart-area-demo.js"></script>
-    <script src="../../js/demo/chart-pie-demo.js"></script>
-
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
+    <script>
+        $('#inputGroupFile01').on('change', function () {
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+    </script>
 
 </body>

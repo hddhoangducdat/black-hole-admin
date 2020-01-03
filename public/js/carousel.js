@@ -1,17 +1,18 @@
 $(document).ready(function() {
-  $(".productItem").on("click", function() {
-    let brandId = $(this).data("id");
+  $(".carouselClick").on("click", function(e) {
+    e.preventDefault();
+    let productId = $(this).data("id");
     $.ajax({
-      url: `/user/delete`,
+      url: "/management/product/carousel",
       type: "POST",
       data: {
-        id: brandId
+        id: productId
       },
       beforeSend: function() {
         //console.log(this.data);
       },
       success: function(res) {
-        window.location.href = "/user";
+        window.location.href = "/management/product";
       }
     });
   });

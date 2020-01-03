@@ -48,18 +48,21 @@ exports.cancle_bill = async (req, res) => {
   let bill = await historyModel.findById(req.body.id);
   bill.history = "cancle";
   await bill.save();
+  res.redirect("../shopping");
 };
 
 exports.find_item = async (req, res) => {
   let bill = await historyModel.findById(req.body.id);
   bill.history = "findItem";
   await bill.save();
+  res.redirect("../shopping");
 };
 
 exports.shipping_item = async (req, res) => {
   let bill = await historyModel.findById(req.body.id);
   bill.history = "shipping";
   await bill.save();
+  res.redirect("../shopping");
 };
 
 const increase_sold_product = async (id, number) => {
@@ -74,4 +77,5 @@ exports.finish_item = async (req, res) => {
   bill.bill.forEach(cart => increase_sold_product(cart._id, cart.number));
   bill.history = "finish";
   await bill.save();
+  res.redirect("../shopping");
 };

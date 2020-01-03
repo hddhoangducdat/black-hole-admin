@@ -4,7 +4,6 @@ var _ = require("lodash");
 exports.all_seller = async (req, res) => {
   var brand = await sellerModel.find();
   _.remove(brand, br => br.type === "admin");
-  console.log(brand);
 
   res.render("brandPage", {
     title: "Black Hole Admin",

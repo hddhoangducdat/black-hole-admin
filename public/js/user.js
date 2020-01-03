@@ -9,7 +9,7 @@ $(document).ready(function() {
       },
       beforSend: function() {},
       success: function(res) {
-        window.location.href = res.redirect;
+        window.location.href = "/home";
       }
     });
   });

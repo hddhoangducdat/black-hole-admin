@@ -40,6 +40,11 @@ router.post(
   upload,
   productController.change_product
 );
+router.post(
+  "/product/carousel",
+  isAuthenticated,
+  productController.add_carousel
+);
 
 router.get("/brand", isAuthenticated, userController.all_seller);
 

@@ -20,7 +20,8 @@ const productSchema = new mongoose.Schema({
   modifiedDate: String,
   metaKeywords: String,
   sellerId: String,
-  sold: Number
+  sold: Number,
+  carousel: String
 });
 
 module.exports = mongoose.model("product", productSchema, "product");

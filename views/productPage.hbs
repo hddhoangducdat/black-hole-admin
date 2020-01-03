@@ -64,6 +64,11 @@
                     <span>Thông tin cá nhân</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/upload_product">
+                    <i class="fas fa-space-shuttle"></i>
+                    <span>Đăng sản phẩm</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/management/product">
                     <i class="fas fa-meteor"></i>
                     <span>Sản phẩm</span>
@@ -184,6 +189,10 @@
                                         <a href="/management/product/modify/{{this._id}}">
                                             <button class="ui button primary">Thay đổi thông tin</button>
                                         </a>
+                                        {{!-- {{#if user.type}} --}}
+                                        <i class="carouselClick fas fa-heart" style="color:{{this.carousel}}"
+                                            data-id={{this._id}}></i>
+                                        {{!-- {{/if}} --}}
                                     </div>
                                 </div>
                             </div>
@@ -248,6 +257,7 @@
     <!-- Page level custom scripts -->
     <script src="../../js/demo/chart-area-demo.js"></script>
     <script src="../../js/demo/chart-pie-demo.js"></script>
+    <script src="../../js/carousel.js"></script>
     {{else}}
 
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -265,6 +275,8 @@
     <!-- Page level custom scripts -->
     <script src="../js/demo/chart-area-demo.js"></script>
     <script src="../js/demo/chart-pie-demo.js"></script>
+    <script src="../js/carousel.js"></script>
+
     {{/if}}
 
 

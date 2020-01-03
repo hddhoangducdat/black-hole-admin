@@ -36,6 +36,7 @@
                     <i class="user icon"></i>
                     <span>Khách hàng</span></a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="/management/brand">
                     <i class="fas fa-robot"></i>
@@ -62,6 +63,11 @@
                 <a class="nav-link" href="/profile">
                     <i class="user icon"></i>
                     <span>Thông tin cá nhân</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/upload_product">
+                    <i class="fas fa-space-shuttle"></i>
+                    <span>Đăng sản phẩm</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/management/product">
@@ -136,7 +142,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.name}}</span>
-                                <img class="img-profile rounded-circle" src={{user.image}}>
+                                <img class="img-profile rounded-circle" src="{{user.image}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
