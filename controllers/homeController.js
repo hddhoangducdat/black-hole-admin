@@ -1,12 +1,33 @@
 var userModel = require("../models/userModel");
 var productModel = require("../models/productModel");
+var cartModel = require("../models/cartModel");
+var historyModel = require("../models/historyModel");
+var sellerModel = require("../models/sellerModel");
 var _ = require("lodash");
+
+const delete_product = async id => {
+  const product = await productModel.findByIdAndDelete(id);
+  await product.save();
+};
+
+exports.seller_delete = async (req, res) => {
+  const seller = await sellerModel.findOneAndDelete({ _id: req.body.id });
+  const product = await productModel.find({ sellerId: req.body.id });
+  product.forEach(p => delete_product(p._id));
+  await seller.save();
+};
 
 exports.delete_user = async (req, res) => {
   //   console.log(req.body)/;
   const user = await userModel.findOneAndDelete({ _id: req.body.id });
-  user.save();
-  console.log(user);
+  const cart = await cartModel.findOneAndDelete({ userId: req.body.id });
+  const history = await historyModel.findOneAndDelete({ userId: req.body.id });
+
+  await user.save();
+  if (cart) await cart.save();
+  if (history) await history.save();
+
+  res.redirect("/");
 };
 
 exports.home_show = async (req, res) => {
@@ -15,9 +36,8 @@ exports.home_show = async (req, res) => {
     res.render("userPage", {
       title: "Black Hole Admin",
       user: {
-        name: "Hoàng Đức Đạt",
-        image:
-          "https://scontent.fsgn1-1.fna.fbcdn.net/v/t1.0-9/54799897_104992787344972_2706694677771321344_n.jpg?_nc_cat=107&_nc_oc=AQnC1K3OPfHj6wc3kzI_ojtRjG04EFPj1IbHojkuFXc5MG7eKUUv4sM38kEHIMarQX0&_nc_ht=scontent.fsgn1-1.fna&oh=a7fc0a694ea731bfece6af0ecc6d6135&oe=5E19E9CC",
+        name: req.user.username,
+        image: req.user.image,
         type: req.user.type === "admin" ? true : false
       },
       people: user
@@ -31,7 +51,6 @@ exports.home_show = async (req, res) => {
       return b.price * b.quantity - a.price * a.quantity;
     });
 
-    console.log(product);
     product.forEach((p, i) => {
       p.profit = p.quantity * p.price;
       if (i === 10) return;
@@ -44,9 +63,8 @@ exports.home_show = async (req, res) => {
     res.render("homePage", {
       title: "Black Hole Admin",
       user: {
-        name: req.user.lastName,
-        image:
-          "https://upload.wikimedia.org/wikipedia/commons/7/7e/Hammer_and_sickle.svg",
+        name: req.user.username,
+        image: req.user.image,
         type: req.user.type === "admin" ? true : false
       },
       earning,

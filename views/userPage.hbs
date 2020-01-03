@@ -167,7 +167,7 @@
                             {{#each people}}
                             <div class="card">
                                 <div class="image">
-                                    <img src={{this.image}}>
+                                    <img src="{{this.image}}">
                                 </div>
                                 <div class="content">
                                     <div class="header">{{this.firstName}} {{this.lastName}}</div>
@@ -175,9 +175,10 @@
                                         <a>{{this.username}}</a>
                                     </div>
                                     <div class="description">
-                                        {{!-- <p>Giới tính: {{this.sex}}</p> --}}
-                                        {{!-- <p>Địa chỉ: {{this.address}}</p> --}}
+                                        <p>Giới tính: {{this.sex}}</p>
+                                        <p>Địa chỉ: {{this.address}}</p>
                                         <p>Email: {{this.email}}</p>
+                                        <p>Số điện thoại: {{this.phone}}</p>
                                     </div>
                                 </div>
                                 <div class="extra content">
@@ -186,11 +187,7 @@
                                             Xóa người dùng
                                         </div>
                                     </span>
-                                    <span>
-                                        <a href="/user/modify">
-                                            <div class="ui basic button green">Chỉnh sửa</div>
-                                        </a>
-                                    </span>
+
 
                                 </div>
                             </div>

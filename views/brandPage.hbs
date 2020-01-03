@@ -168,15 +168,19 @@
                     <div class="ui segment">
                         <div class="ui grid">
                             <div class="three wide column">
-                                <img class="ui image fluid" src={{user.image}} />
+                                <img class="ui image fluid" src="../{{this.image}}" />
                             </div>
                             <div class="thirteen wide column">
                                 <h2 class="ui title">{{this.firstName}} {{this.lastName}}</h2>
-                                <h4 class="ui description">Số sản phẩm: {{this.product}}</h4>
-                                <a href="/management/product">
-                                    <button class="ui button green">Xem sản phẩm</button>
+                                <h4 class="ui description">Tên tài khoản: {{this.username}}
+                                    <p class="ui meta">Email: {{this.email}}</p>
+                                </h4>
+
+                                <a href="/management/product/{{this._id}}">
+                                    <button class="ui button green">Xem sản
+                                        phẩm</button>
                                 </a>
-                                <button class="ui button red">Xoá nhà cung cấp</button>
+                                <button class="ui button red productItem" data-id={{this._id}}>Xóa tài khoản</button>
                             </div>
                         </div>
                     </div>
@@ -238,5 +242,5 @@
     <script src="../js/demo/chart-area-demo.js"></script>
     <script src="../js/demo/chart-pie-demo.js"></script>
 
-
+    <script src="../js/productBrand.js"></script>
 </body>
