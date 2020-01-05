@@ -35,9 +35,8 @@ exports.show_bill = async (req, res) => {
   res.render("shoppingPage", {
     title: "Black Hole Admin",
     user: {
-      name: "Hoàng Đức Đạt",
-      image:
-        "https://scontent.fsgn1-1.fna.fbcdn.net/v/t1.0-9/54799897_104992787344972_2706694677771321344_n.jpg?_nc_cat=107&_nc_oc=AQnC1K3OPfHj6wc3kzI_ojtRjG04EFPj1IbHojkuFXc5MG7eKUUv4sM38kEHIMarQX0&_nc_ht=scontent.fsgn1-1.fna&oh=a7fc0a694ea731bfece6af0ecc6d6135&oe=5E19E9CC",
+      name: req.user.username,
+      image: req.user.image,
       type: req.user.type === "admin" ? true : false
     },
     history: result
@@ -55,14 +54,13 @@ exports.find_item = async (req, res) => {
   let bill = await historyModel.findById(req.body.id);
   bill.history = "findItem";
   await bill.save();
-  res.redirect("../shopping");
 };
 
 exports.shipping_item = async (req, res) => {
+  res.redirect("../shopping");
   let bill = await historyModel.findById(req.body.id);
   bill.history = "shipping";
   await bill.save();
-  res.redirect("../shopping");
 };
 
 const increase_sold_product = async (id, number) => {
@@ -77,5 +75,4 @@ exports.finish_item = async (req, res) => {
   bill.bill.forEach(cart => increase_sold_product(cart._id, cart.number));
   bill.history = "finish";
   await bill.save();
-  res.redirect("../shopping");
 };

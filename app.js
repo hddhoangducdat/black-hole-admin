@@ -43,7 +43,7 @@ app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser("keyboard cat"));
-app.use(expressSession({ cookie: { maxAge: 6000 * 10 } })); //60000ms ~ 60s
+app.use(expressSession({ cookie: { maxAge: 6000 * 100 } })); //60000ms ~ 60s
 app.use(express.static(path.join(__dirname, "public")));
 app.use(flash());
 

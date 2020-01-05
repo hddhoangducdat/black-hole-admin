@@ -1,7 +1,10 @@
 $(document).ready(function() {
-  $(".carouselClick").on("click", function(e) {
-    e.preventDefault();
+  $(".carouselClick").on("click", function() {
     let productId = $(this).data("id");
+    let carousel = $(this).data("carousel");
+    $(`#${productId}-carousel`).attr({
+      style: carousel.length === 0 ? "color: red" : ""
+    });
     $.ajax({
       url: "/management/product/carousel",
       type: "POST",
@@ -11,9 +14,7 @@ $(document).ready(function() {
       beforeSend: function() {
         //console.log(this.data);
       },
-      success: function(res) {
-        window.location.href = "/management/product";
-      }
+      success: function(res) {}
     });
   });
 

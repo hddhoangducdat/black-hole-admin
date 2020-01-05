@@ -189,10 +189,11 @@
                                         <a href="/management/product/modify/{{this._id}}">
                                             <button class="ui button primary">Thay đổi thông tin</button>
                                         </a>
-                                        {{!-- {{#if user.type}} --}}
-                                        <i class="carouselClick fas fa-heart" style="color:{{this.carousel}}"
-                                            data-id={{this._id}}></i>
-                                        {{!-- {{/if}} --}}
+                                        {{#if ../user.type}}
+                                        <i id="{{this._id}}-carousel" class="carouselClick fas fa-heart"
+                                            style="color:{{this.carousel}}" data-id={{this._id}}
+                                            data-carousel="{{this.carousel}}"></i>
+                                        {{/if}}
                                     </div>
                                 </div>
                             </div>

@@ -1,6 +1,10 @@
 $(document).ready(function() {
   $(".deleteuser").on("click", function() {
     const userId = $(this).data("id");
+    $(`#${userId}-people`).html("");
+    $(`#${userId}-people`).attr({
+      class: ""
+    });
     $.ajax({
       url: "home/delete",
       type: "POST",
@@ -8,9 +12,7 @@ $(document).ready(function() {
         id: userId
       },
       beforSend: function() {},
-      success: function(res) {
-        window.location.href = "/home";
-      }
+      success: function(res) {}
     });
   });
 });

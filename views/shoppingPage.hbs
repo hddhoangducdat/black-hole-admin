@@ -204,21 +204,24 @@
                         <br />
                         {{else}}
                         <div class="ui three top attached steps">
-                            <div class="ui {{this.condition1}} step findItem button" data-id={{this._id}}>
+                            <div id="{{this._id}}-find" class="ui {{this.condition1}} step findItem button"
+                                data-id={{this._id}}>
                                 <i class="payment icon"></i>
                                 <div class="content">
                                     <div class="title">Gói hàng</div>
                                 </div>
                             </div>
 
-                            <div class="ui {{this.condition2}} step shippingItem button" data-id={{this._id}}>
+                            <div id="{{this._id}}-ship" class="ui {{this.condition2}} step shippingItem button"
+                                data-id={{this._id}}>
                                 <i class="truck icon"></i>
                                 <div class="content">
                                     <div class="title">Đang chuyển</div>
                                 </div>
                             </div>
 
-                            <div class="ui {{this.condition3}} step finishItem button" data-id={{this._id}}>
+                            <div id="{{this._id}}-fin" class="ui {{this.condition3}} step finishItem button"
+                                data-id={{this._id}}>
                                 {{!-- <i class="info icon"></i> --}}
                                 <div class="content">
                                     <div class="title">Hoàn tất</div>
@@ -243,7 +246,9 @@
                             {{#if this.condition3}}
                             {{else}}
                             <br />
-                            <button class="ui button right deleteBill" data-id={{this._id}}>Hủy đơn hàng</button>
+                            <div id="{{this._id}}-button">
+                                <button class="ui button right deleteBill" data-id={{this._id}}>Hủy đơn hàng</button>
+                            </div>
                             {{/if}}
                         </div>
                         <br />

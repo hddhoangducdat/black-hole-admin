@@ -18,6 +18,15 @@ $(document).ready(function() {
 
   $(".findItem").on("click", function() {
     let billId = $(this).data("id");
+    $(`#${billId}-find`).attr({
+      class: "ui active step findItem button"
+    });
+    $(`#${billId}-ship`).attr({
+      class: "ui step shippingItem button"
+    });
+    $(`#${billId}-fin`).attr({
+      class: "ui step finishItem button"
+    });
     $.ajax({
       url: "shopping/findItem",
       type: "POST",
@@ -27,14 +36,21 @@ $(document).ready(function() {
       beforeSend: function() {
         //console.log(this.data);
       },
-      success: function(res) {
-        window.location.href = "/management/shopping";
-      }
+      success: function(res) {}
     });
   });
 
   $(".shippingItem").on("click", function() {
     let billId = $(this).data("id");
+    $(`#${billId}-find`).attr({
+      class: "ui step findItem button"
+    });
+    $(`#${billId}-ship`).attr({
+      class: "ui active step shippingItem button"
+    });
+    $(`#${billId}-fin`).attr({
+      class: "ui step finishItem button"
+    });
     $.ajax({
       url: "shopping/shippingItem",
       type: "POST",
@@ -44,14 +60,22 @@ $(document).ready(function() {
       beforeSend: function() {
         //console.log(this.data);
       },
-      success: function(res) {
-        window.location.href = "/management/shopping";
-      }
+      success: function(res) {}
     });
   });
 
   $(".finishItem").on("click", function() {
     let billId = $(this).data("id");
+    $(`#${billId}-find`).attr({
+      class: "ui step findItem button"
+    });
+    $(`#${billId}-ship`).attr({
+      class: "ui step shippingItem button"
+    });
+    $(`#${billId}-fin`).attr({
+      class: "ui active step finishItem button"
+    });
+    $(`#${billId}-button`).html("");
     $.ajax({
       url: "shopping/finishItem",
       type: "POST",
@@ -61,9 +85,7 @@ $(document).ready(function() {
       beforeSend: function() {
         //console.log(this.data);
       },
-      success: function(res) {
-        window.location.href = "/management/shopping";
-      }
+      success: function(res) {}
     });
   });
 

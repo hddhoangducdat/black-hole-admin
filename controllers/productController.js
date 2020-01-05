@@ -19,12 +19,14 @@ exports.seller_product = async (req, res) => {
     req.user.type === "admin"
       ? await productModel.find()
       : await productModel.find({ sellerId: req.user._id });
+  const type = req.user.type === "admin" ? true : false;
+  console.log(type);
   res.render("productPage", {
     title: "Black Hole Admin",
     user: {
       name: req.user.username,
       image: req.user.image,
-      type: req.user.type === "admin" ? true : false
+      type
     },
     carts
   });
@@ -74,6 +76,35 @@ exports.show_form_upload_product = async (req, res) => {
 };
 
 exports.upload_product = async (req, res) => {
+  let productName;
+  switch (req.body.product_categories) {
+    case "fashion":
+      productName = "Thời trang";
+      break;
+    case "sport":
+      productName = "Thể thao";
+      break;
+    case "electronic":
+      productName = "Điện tử";
+      break;
+    case "lifestyle":
+      productName = "Nhà cửa - đời sống";
+      break;
+    case "toolkit":
+      productName = "Phụ kiện - thiết bị số";
+      break;
+    case "transport":
+      productName = "Phương tiện";
+      break;
+    case "book":
+      productName = "Sách";
+      break;
+    case "food":
+      productName = "Thực phẩm";
+      break;
+    default:
+      break;
+  }
   var product = new productModel({
     name: req.body.product_name,
     price: req.body.product_price,
@@ -82,6 +113,7 @@ exports.upload_product = async (req, res) => {
     category: req.body.product_categories,
     createdBy: req.user.username,
     sellerId: req.user._id,
+    productName,
     sold: 0,
     images: req.file
       ? "https://black-hole-admin.herokuapp.com/" +
@@ -98,5 +130,4 @@ exports.add_carousel = async (req, res) => {
   product.carousel = product.carousel === "red" ? "" : "red";
 
   await product.save();
-  res.redirect("../product");
 };

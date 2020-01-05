@@ -15,7 +15,6 @@ exports.seller_delete = async (req, res) => {
   const product = await productModel.find({ sellerId: req.body.id });
   product.forEach(p => delete_product(p._id));
   await seller.save();
-  res.redirect("../brand");
 };
 
 exports.delete_user = async (req, res) => {
@@ -27,8 +26,6 @@ exports.delete_user = async (req, res) => {
   await user.save();
   if (cart) await cart.save();
   if (history) await history.save();
-
-  res.redirect("../home");
 };
 
 exports.home_show = async (req, res) => {
@@ -49,17 +46,17 @@ exports.home_show = async (req, res) => {
     let quantity = 0;
     let statictis = [];
     product.sort((a, b) => {
-      return b.price * b.quantity - a.price * a.quantity;
+      return b.price * b.sold - a.price * a.sold;
     });
 
     product.forEach((p, i) => {
-      p.profit = p.quantity * p.price;
+      p.profit = p.sold * p.price;
       if (i === 10) return;
       statictis = [...statictis, p];
     });
     product.forEach(p => {
-      earning += p.quantity * p.price;
-      quantity += p.quantity;
+      earning += p.sold * p.price;
+      quantity += p.sold;
     });
     res.render("homePage", {
       title: "Black Hole Admin",

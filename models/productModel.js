@@ -21,7 +21,8 @@ const productSchema = new mongoose.Schema({
   metaKeywords: String,
   sellerId: String,
   sold: Number,
-  carousel: String
+  carousel: String,
+  productName: String
 });
 
 module.exports = mongoose.model("product", productSchema, "product");

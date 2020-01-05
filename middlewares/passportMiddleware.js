@@ -98,6 +98,8 @@ module.exports = passport => {
               newUser.email = "";
               newUser.firstName = req.param("firstName");
               newUser.lastName = req.param("lastName");
+              newUser.image =
+                "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png";
 
               // save the user
               newUser.save(err => {
