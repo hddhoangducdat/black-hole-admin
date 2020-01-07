@@ -18,6 +18,23 @@ $(document).ready(function() {
     });
   });
 
+  $(".deleteProduct").on("click", function() {
+    let productId = $(this).data("id");
+    console.log(productId);
+    $(`#${productId}-product`).html("");
+    $.ajax({
+      url: "/management/product/delete",
+      type: "POST",
+      data: {
+        id: productId
+      },
+      beforeSend: function() {
+        //console.log(this.data);
+      },
+      success: function(res) {}
+    });
+  });
+
   function scrollToDownload() {
     if ($(".section-download").length != 0) {
       $("html, body").animate(

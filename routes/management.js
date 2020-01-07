@@ -45,6 +45,11 @@ router.post(
   isAuthenticated,
   productController.add_carousel
 );
+router.post(
+  "/product/delete",
+  isAuthenticated,
+  productController.delete_product
+);
 
 router.get("/brand", isAuthenticated, userController.all_seller);
 

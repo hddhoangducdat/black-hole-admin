@@ -131,3 +131,8 @@ exports.add_carousel = async (req, res) => {
 
   await product.save();
 };
+
+exports.delete_product = async (req, res) => {
+  let product = await productModel.findByIdAndDelete(req.body.id);
+  await product.save();
+};

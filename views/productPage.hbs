@@ -71,7 +71,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/management/product">
                     <i class="fas fa-meteor"></i>
-                    <span>Sản phẩm</span>
+                    <span>Sản phẩm</span></a>
             </li>
 
             {{/if}}
@@ -94,15 +94,20 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form
+                    <form id="dropdownMenuOffset"
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Tìm kiếm người dùng và hàng hóa" aria-label="Search"
-                                aria-describedby="basic-addon2">
+                            <div class="dropdown mr-1">
+                                <input id="searchInput" type="text"
+                                    class="dropdown-toggle form-control bg-light border-0 small"
+                                    placeholder="Tìm kiếm người dùng và hàng hóa" aria-label="Search"
+                                    aria-describedby="basic-addon2" aria-haspopup="true" aria-expanded="true"
+                                    data-offset="10,20" autocomplete="off">
+                                <div id="dropdownItem" class="dropdown-menu " aria-labelledby="dropdownMenuOffset">
+                                </div>
+                            </div>
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-primary" type="submit">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -172,7 +177,7 @@
                     <!-- Content Row -->
                     <div class="row">
                         {{#each carts}}
-                        <div class="col-lg-2 mb-4">
+                        <div id="{{this._id}}-product" class="col-lg-2 mb-4">
 
                             <!-- Illustrations -->
                             <div class="card shadow mb-4">
@@ -187,8 +192,11 @@
                                         <p>Giá sản phẩm: {{this.price}} đ</p>
                                         <p>Nhà cung cấp: {{this.createdBy}}</p>
                                         <a href="/management/product/modify/{{this._id}}">
-                                            <button class="ui button primary">Thay đổi thông tin</button>
+                                            <button class="ui button primary">Thay
+                                                đổi thông tin</button>
                                         </a>
+                                        <button class="deleteProduct ui button secondary" data-id={{this._id}}>Xoá
+                                            sản phẩm</button>
                                         {{#if ../user.type}}
                                         <i id="{{this._id}}-carousel" class="carouselClick fas fa-heart"
                                             style="color:{{this.carousel}}" data-id={{this._id}}
@@ -259,6 +267,7 @@
     <script src="../../js/demo/chart-area-demo.js"></script>
     <script src="../../js/demo/chart-pie-demo.js"></script>
     <script src="../../js/carousel.js"></script>
+    <srcipt src="../../js/search.js"></srcipt>
     {{else}}
 
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -277,6 +286,7 @@
     <script src="../js/demo/chart-area-demo.js"></script>
     <script src="../js/demo/chart-pie-demo.js"></script>
     <script src="../js/carousel.js"></script>
+    <script src="../js/search.js"></script>
 
     {{/if}}
 

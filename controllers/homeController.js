@@ -3,6 +3,7 @@ var productModel = require("../models/productModel");
 var cartModel = require("../models/cartModel");
 var historyModel = require("../models/historyModel");
 var sellerModel = require("../models/sellerModel");
+var httpMsgs = require("http-msgs");
 var _ = require("lodash");
 
 const delete_product = async id => {
@@ -70,4 +71,24 @@ exports.home_show = async (req, res) => {
       statictis
     });
   }
+};
+
+exports.search_product = async (req, res) => {
+  let search = req.body.search.toLowerCase();
+  const product = req.user.type
+    ? await productModel.find()
+    : await productModel.find({ sellerId: req.user._id });
+  let arr = [];
+  product.forEach((p, i) => {
+    var vtr = p.name.toLowerCase().search(search);
+    if (vtr !== -1)
+      arr = [
+        ...arr,
+        { name: p.name, href: `/management/product/modify/${p._id}` }
+      ];
+  });
+  console.log(arr);
+  httpMsgs.sendJSON(req, res, {
+    arr
+  });
 };
